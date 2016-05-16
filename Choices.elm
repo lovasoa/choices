@@ -71,11 +71,35 @@ makeModelFromTuples = List.map
 exampleModel : Model Bool
 exampleModel = makeModelFromTuples [(True, "Yes"), (False, "No")]
 
-{-| get a list of all answers that have been selected -}
+{-| get a list of all answers that have been selected
+
+    getAllSelected
+      [
+        {value: 1, selected:True, description:"This is answer number 1"}
+        {value: 2, selected:False, description:"This is answer number 2"}
+        {value: 3, selected:True, description:"This is answer number 2"}
+      ]
+        == [1,3]
+-}
 getAllSelected : Model valueType -> List valueType
 getAllSelected = List.filter (.selected) >> List.map (.value)
 
-{-| get the first selected answer-}
+{-| get the first selected answer
+
+    getSelected
+      [
+        {value: 1, selected:False, description:"This is answer number 1"}
+        {value: 2, selected:False, description:"This is answer number 2"}
+      ]
+        == Nothing
+
+    getSelected
+      [
+        {value: 1, selected:False, description:"This is answer number 1"}
+        {value: 2, selected:True, description:"This is answer number 2"}
+      ]
+        == Just 1
+-}
 getSelected : Model valueType -> Maybe valueType
 getSelected = getAllSelected >> List.head
 
