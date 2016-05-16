@@ -1,5 +1,5 @@
 module Choices exposing (
-    Model, Answer, makeModel, getAllSelected, getSelected,
+    Model, Answer, makeModel, makeModelFromTuples, getAllSelected, getSelected,
     Msg, update,
     ViewType(..), view, genericView
   )
@@ -8,13 +8,13 @@ module Choices exposing (
 {-| This library allows you to draw an HTML GUI for choices  between different values
 
 # Model
-@docs Model, Answer, makeModel, getAllSelected, getSelected
-
-# Update
-@docs Msg, update
+@docs Model, Answer, makeModel, makeModelFromTuples, getAllSelected, getSelected
 
 # View
 @docs ViewType, view, genericView
+
+# Update
+@docs Msg, update
 -}
 
 import Html exposing (..)
@@ -28,7 +28,7 @@ main =
 
 
 -- MODEL
-{-| A choice-}
+{-| Represents a choice (one of the possible answers) and its human description-}
 type alias Answer valueType = {
   value: valueType,
   selected:Bool,
@@ -39,7 +39,16 @@ type alias Answer valueType = {
 type alias Model valueType = List (Answer valueType)
 
 
-{-| Make a model from a list of values-}
+{-| Make a model from a list of values a function associating a value to its description
+
+    makeModel (\n -> "This is answer number " ++ toString n) [1,2] ==
+      [
+        {value: 1, selected:False, description:"This is answer number 1"}
+        {value: 2, selected:False, description:"This is answer number 2"}
+      ]
+
+    makeModel snd [(True, "Yes"), (False, "No")]
+-}
 makeModel : (a -> String) -> List a -> Model a
 makeModel stringify = List.map
                         (\v -> {
@@ -47,9 +56,20 @@ makeModel stringify = List.map
                           selected = False,
                           description = stringify v
                         })
+{-| Make a model from a list of (value, description) tuples
 
-exampleModel : Model Int
-exampleModel = makeModel (((++)"Answer N°") << toString) [1..10]
+    makeModelFromTuples  [(True, "Yes"), (False, "No")]
+-}
+makeModelFromTuples : List (a, String) -> Model a
+makeModelFromTuples = List.map
+                        (\(value, description) -> {
+                          value = value,
+                          selected = False,
+                          description = description
+                        })
+
+exampleModel : Model Bool
+exampleModel = makeModelFromTuples [(True, "Yes"), (False, "No")]
 
 {-| get a list of all answers that have been selected -}
 getAllSelected : Model valueType -> List valueType
@@ -93,11 +113,11 @@ giveName model = List.map (toString << .value) model
                   |> String.join ","
                   |> ((++)"choices:")
 
-{-| = genericView (InputRadio) -}
+{-| A view that uses the InputRadio display -}
 view :  Model valueType -> Html (Msg valueType)
 view = genericView (InputRadio)
 
-{-| view
+{-| Given a ViewType and a Model, create the corresponding Html elements
 -}
 genericView : ViewType -> Model valueType -> Html (Msg valueType)
 genericView viewType model =
