@@ -1,6 +1,6 @@
 {
     "version": "1.0.0",
-    "summary": "Represent a choice between multiple values, using radio buttons, checkboxes, or HTML's <select> element",
+    "summary": "HTML GUI for a choice between multiple values",
     "repository": "https://github.com/lovasoa/choices",
     "license": "BSD3",
     "source-directories": [
