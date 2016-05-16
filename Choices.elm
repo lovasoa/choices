@@ -1,7 +1,7 @@
 module Choices exposing (
     Model, Answer, makeModel, getAllSelected, getSelected,
     Msg, update,
-    ViewType, view, genericView
+    ViewType(..), view, genericView
   )
 
 
