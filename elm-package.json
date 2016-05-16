@@ -1,7 +1,7 @@
 {
     "version": "1.0.0",
     "summary": "HTML GUI for a choice between multiple values",
-    "repository": "https://github.com/lovasoa/choices",
+    "repository": "https://github.com/lovasoa/choices.git",
     "license": "BSD3",
     "source-directories": [
         "."
