@@ -1,7 +1,7 @@
 {
     "version": "1.0.0",
     "summary": "Represent a choice between multiple values, using radio buttons, checkboxes, or HTML's <select> element",
-    "repository": "https://github.com/user/project.git",
+    "repository": "https://github.com/lovasoa/choices",
     "license": "BSD3",
     "source-directories": [
         "."
