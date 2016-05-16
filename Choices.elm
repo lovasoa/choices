@@ -77,8 +77,16 @@ update action model =
 
 -- VIEW
 type alias ModelName = String
-{-| What Html element to use in order to draw the GUI-}
-type ViewType = InputCheckbox | InputRadio | HtmlSelect Bool
+
+{-| What Html element to use in order to draw the GUI.
+  * **InputCheckbox** : Use `<input type='checkbox'>`
+  * **InputRadio** : Use `<input type='radio'>`
+  * **HtmlSelect** *allowMultiple*: Use `<select [multiple]>`
+-}
+type ViewType
+      = InputCheckbox
+      | InputRadio
+      | HtmlSelect Bool
 
 giveName : Model valueType -> ModelName
 giveName model = List.map (toString << .value) model
