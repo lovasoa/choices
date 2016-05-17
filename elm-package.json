@@ -1,5 +1,5 @@
 {
-    "version": "2.0.2",
+    "version": "2.1.0",
     "summary": "HTML GUI for a choice between multiple values",
     "repository": "https://github.com/lovasoa/choices.git",
     "license": "BSD3",
