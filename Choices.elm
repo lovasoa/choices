@@ -1,7 +1,7 @@
 module Choices exposing (
     Model, Answer, makeModel, makeModelFromTuples, getAllSelected, getSelected, setSelected,
     Msg, update,
-    ViewType(..), view, genericView
+    ViewParams, ViewType(..), view, genericView
   )
 
 
@@ -11,7 +11,7 @@ module Choices exposing (
 @docs Model, Answer, makeModel, makeModelFromTuples, getAllSelected, getSelected, setSelected
 
 # View
-@docs ViewType, view, genericView
+@docs ViewParams, ViewType, view, genericView
 
 # Update
 @docs Msg, update
