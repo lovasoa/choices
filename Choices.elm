@@ -143,21 +143,24 @@ type ViewType
       | InputRadio
       | HtmlSelect Bool
 
-giveName : Model valueType -> ModelName
-giveName model = List.map (toString << .value) model
-                  |> String.join ","
-                  |> ((++)"choices:")
-
-{-| A view that uses the InputRadio display -}
-view :  Model valueType -> Html (Msg valueType)
-view = genericView (InputRadio)
-
-{-| Given a ViewType and a Model, create the corresponding Html elements
+{-| Parameters of a view
+  * viewType : html element to use
+  * name : name HTML element
 -}
-genericView : ViewType -> Model valueType -> Html (Msg valueType)
-genericView viewType model =
-  let name = giveName model
-  in (answerContainer viewType) (List.map (viewAnswer viewType name) model)
+type alias ViewParams = {
+    viewType : ViewType,
+    name : String
+  }
+
+{-| A view that uses the InputRadio display, and that has its input name set to "ElmChoices" -}
+view :  Model valueType -> Html (Msg valueType)
+view = genericView (ViewParams InputRadio "ElmChoices")
+
+{-| Given a ViewParams and a Model, create the corresponding Html elements
+-}
+genericView : ViewParams -> Model valueType -> Html (Msg valueType)
+genericView params model =
+  (answerContainer params.viewType) (List.map (viewAnswer params.viewType params.name) model)
 
 answerContainer viewType =
   case viewType of
