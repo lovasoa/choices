@@ -1,5 +1,5 @@
 module Choices exposing (
-    Model, Answer, makeModel, makeModelFromTuples, getAllSelected, getSelected,
+    Model, Answer, makeModel, makeModelFromTuples, getAllSelected, getSelected, setSelected,
     Msg, update,
     ViewType(..), view, genericView
   )
@@ -8,7 +8,7 @@ module Choices exposing (
 {-| This library allows you to draw an HTML GUI for choices  between different values
 
 # Model
-@docs Model, Answer, makeModel, makeModelFromTuples, getAllSelected, getSelected
+@docs Model, Answer, makeModel, makeModelFromTuples, getAllSelected, getSelected, setSelected
 
 # View
 @docs ViewType, view, genericView
@@ -102,6 +102,11 @@ getAllSelected = List.filter (.selected) >> List.map (.value)
 -}
 getSelected : Model valueType -> Maybe valueType
 getSelected = getAllSelected >> List.head
+
+{-|Set the set of selected elements-}
+setSelected : List valueType -> Model valueType -> Model valueType
+setSelected selection =
+  List.map (\answer -> {answer | selected = List.member answer.value selection})
 
 -- UPDATE
 
