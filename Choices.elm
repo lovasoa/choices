@@ -107,15 +107,21 @@ getSelected = getAllSelected >> List.head
 
 {-| Indicate how to update the model-}
 type Msg valueType
-    = Check valueType Bool
+    = Check valueType Bool Bool
 
 {-| update the model -}
 update : Msg valueType -> Model valueType -> Model valueType
 update action model =
   case action of
-    Check value selected ->
+    Check value deselectOthers selected ->
       List.map
-        (\elem -> if elem.value == value then {elem | selected = selected} else elem)
+        (\elem -> if elem.value == value
+                    then {elem | selected = selected}
+                    else {elem | selected = if deselectOthers
+                                              then False
+                                              else elem.selected
+                         }
+        )
         model
 
 
@@ -166,7 +172,7 @@ viewAnswerInput inputType modelName answer =
     input [
             type' inputType,
             checked answer.selected,
-            onCheck (Check answer.value),
+            onCheck (Check answer.value (inputType=="radio")),
             value (toString answer.value),
             name modelName
           ] []
@@ -177,6 +183,6 @@ viewAnswerSelect : Bool -> Answer valueType -> Html (Msg valueType)
 viewAnswerSelect isMultiple answer =
   option [
           selected answer.selected,
-          onCheck (Check answer.value),
+          onCheck (Check answer.value (not isMultiple)),
           value (toString answer.value)
          ] [text answer.description]
