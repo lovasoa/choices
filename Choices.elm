@@ -177,13 +177,13 @@ viewAnswer viewType name =
 viewAnswerInput : String -> ModelName -> Answer valueType -> Html (Msg valueType)
 viewAnswerInput inputType modelName answer =
   label [] [
-    input [
+    input ([
             type' inputType,
             checked answer.selected,
             onCheck (Check answer.value (inputType=="radio")),
-            value (toString answer.value),
-            name modelName
-          ] []
+            value (toString answer.value)
+          ] ++ (if modelName == "" then [] else [name modelName]))
+          []
     , text answer.description
   ]
 
