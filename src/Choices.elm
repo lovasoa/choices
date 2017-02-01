@@ -104,19 +104,19 @@ getAllSelected =
 
 {-| get the first selected answer
 
-    getSelected
-      [
-        {value: 1, selected:False, description:"This is answer number 1"}
-        {value: 2, selected:False, description:"This is answer number 2"}
-      ]
-        == Nothing
+    >>> getSelected
+    ...  [
+    ...    {value =  1, selected = False, description = "This is answer number 1"},
+    ...    {value =  2, selected = False, description = "This is answer number 2"}
+    ...  ]
+    Nothing
 
-    getSelected
-      [
-        {value: 1, selected:False, description:"This is answer number 1"}
-        {value: 2, selected:True, description:"This is answer number 2"}
-      ]
-        == Just 1
+    >>> getSelected
+    ...  [
+    ...    {value =  1, selected = False, description = "This is answer number 1"},
+    ...    {value =  2, selected = True, description = "This is answer number 2"}
+    ...  ]
+    Just 2
 -}
 getSelected : Model valueType -> Maybe valueType
 getSelected =
