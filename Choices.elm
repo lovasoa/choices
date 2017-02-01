@@ -33,11 +33,6 @@ import Html.Events exposing (..)
 import String
 
 
-main =
-    Html.beginnerProgram { model = exampleModel, view = view, update = update }
-
-
-
 -- MODEL
 
 
@@ -90,11 +85,6 @@ makeModelFromTuples =
             , description = description
             }
         )
-
-
-exampleModel : Model Bool
-exampleModel =
-    makeModelFromTuples [ ( True, "Yes" ), ( False, "No" ) ]
 
 
 {-| get a list of all answers that have been selected
