@@ -78,7 +78,11 @@ makeModel stringify =
 
 {-| Make a model from a list of (value, description) tuples
 
-    makeModelFromTuples  [(True, "Yes"), (False, "No")]
+    >>> makeModelFromTuples  [(True, "Yes"), (False, "No")]
+    [
+      {value= True, selected=False, description="Yes"},
+      {value= False, selected=False, description="No"}
+    ]
 -}
 makeModelFromTuples : List ( a, String ) -> Model a
 makeModelFromTuples =
