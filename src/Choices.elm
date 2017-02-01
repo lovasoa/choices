@@ -89,13 +89,13 @@ makeModelFromTuples =
 
 {-| get a list of all answers that have been selected
 
-    getAllSelected
-      [
-        {value: 1, selected:True, description:"This is answer number 1"}
-        {value: 2, selected:False, description:"This is answer number 2"}
-        {value: 3, selected:True, description:"This is answer number 2"}
-      ]
-        == [1,3]
+    >>> getAllSelected
+    ...  [
+    ...    {value= 1, selected= True, description= "This is answer number 1"},
+    ...    {value= 2, selected= False, description= "This is answer number 2"},
+    ...    {value= 3, selected= True, description= "This is answer number 2"}
+    ...  ]
+    [1,3]
 -}
 getAllSelected : Model valueType -> List valueType
 getAllSelected =

@@ -3,3 +3,6 @@ elm-package.json
 elm-stuff/
 # elm-repl generated files
 repl-temp-*
+tests/Doc
+tests/*elm
+node_modules/

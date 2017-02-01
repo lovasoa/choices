@@ -1,0 +1,34 @@
+{
+  "name": "elm-choices",
+  "version": "1.0.0",
+  "description": "elm package to render the GUI that allows to choose between different values",
+  "main": "index.js",
+  "directories": {
+    "test": "tests"
+  },
+  "scripts": {
+    "test": "elm-doc-test && elm-test init && elm-test tests/Doc/Main.elm"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/lovasoa/choices.git"
+  },
+  "keywords": [
+    "elm",
+    "choices",
+    "select",
+    "radio",
+    "input"
+  ],
+  "author": "Ophir LOJKINE",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/lovasoa/choices/issues"
+  },
+  "homepage": "https://github.com/lovasoa/choices#readme",
+  "devDependencies": {
+    "elm": "^0.18.0",
+    "elm-doc-test": "^2.1.1",
+    "elm-test": "^0.18.2"
+  }
+}
