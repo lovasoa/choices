@@ -15,7 +15,18 @@ module Choices
         , genericView
         )
 
-{-| This library allows you to draw an HTML GUI for choices  between different values
+{-| This library allows you to draw an HTML GUI for choices  between different values.
+
+  This allows to easily represent and switch between
+    * `<input type='radio'>`,
+    * `<input type='checkbox'>`
+    * `<select>`, (and `<select multiple>`)
+
+  You can easily allow the user to choose between values of any Elm type,
+  and represent each value as a string with a custom function.
+
+  You can see an simple example of this library in use here:
+  [`example.elm`](https://github.com/lovasoa/choices/blob/master/example.elm)
 
 # Model
 @docs Model, Answer, makeModel, makeModelFromTuples, getAllSelected, getSelected, setSelected
