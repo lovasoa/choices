@@ -28,7 +28,6 @@ module Choices
 -}
 
 import Html exposing (..)
-import Html.App as Html
 import Html.Attributes exposing (..)
 import Html.Events exposing (..)
 import String
@@ -242,7 +241,7 @@ viewAnswerInput : String -> ModelName -> Answer valueType -> Html (Msg valueType
 viewAnswerInput inputType modelName answer =
     label []
         [ input
-            ([ type' inputType
+            ([ type_ inputType
              , checked answer.selected
              , onCheck (Check answer.value (inputType == "radio"))
              , value (toString answer.value)
