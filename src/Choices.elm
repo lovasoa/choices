@@ -53,13 +53,17 @@ type alias Model valueType =
 
 {-| Make a model from a list of values a function associating a value to its description
 
-    makeModel (\n -> "This is answer number " ++ toString n) [1,2] ==
-      [
-        {value: 1, selected:False, description:"This is answer number 1"}
-        {value: 2, selected:False, description:"This is answer number 2"}
-      ]
+    >>> makeModel (\n -> "This is answer number " ++ toString n) [1,2]
+    [
+      {value= 1, selected=False, description="This is answer number 1"},
+      {value= 2, selected=False, description="This is answer number 2"}
+    ]
 
-    makeModel snd [(True, "Yes"), (False, "No")]
+    >>> makeModel Tuple.second [(True, "Yes"), (False, "No")]
+    [
+      {value= (True, "Yes"), selected=False, description="Yes"},
+      {value= (False, "No"), selected=False, description="No"}
+    ]
 -}
 makeModel : (a -> String) -> List a -> Model a
 makeModel stringify =
