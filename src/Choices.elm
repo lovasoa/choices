@@ -132,10 +132,23 @@ getSelected =
 
 
 {-| Set the set of selected elements
+
+    >>> setSelected [1]
+    ...  [
+    ...    {value =  1, selected = False, description = "One"},
+    ...    {value =  2, selected = True, description = "Two"}
+    ...  ]
+    [
+      {value= 1, selected= True, description="One"},
+      {value= 2, selected= False, description="Two"}
+    ]
 -}
 setSelected : List valueType -> Model valueType -> Model valueType
 setSelected selection =
-    List.map (\answer -> { answer | selected = List.member answer.value selection })
+    List.map
+        (\answer ->
+            { answer | selected = List.member answer.value selection }
+        )
 
 
 
@@ -191,7 +204,7 @@ type ViewType
 
 {-| Parameters of a view
   * viewType : html element to use
-  * name : name HTML element
+  * name : HTML `name` attribute
 -}
 type alias ViewParams =
     { viewType : ViewType
